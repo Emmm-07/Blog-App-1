@@ -1,4 +1,9 @@
 
+:root{
+  --primary-color: #ece7e2;
+  --secondary-color: #90f135;
+  --tertiary-color: #4a7766;
+}
 .content{
   max-width: 600px;
   margin: 20px auto;
@@ -16,7 +21,7 @@
 }
 .blog-preview h3{
 
-  color: #f1356d;
+  color: var(--secondary-color);
   margin-bottom: 8px;
 }
 
@@ -34,64 +39,49 @@
   border: 1px solid #ddd;
   box-sizing: border-box;
 }
-
+.create textarea{
+  height: 5rem;
+}
 .create button{
   width:25%;
   height: 5vh;
   margin: 10px auto;
-  background-color: #f1356d;
+  background-color: var(--secondary-color);
   border: 0;
   border-radius: 10px;
   cursor: pointer;
-  color: whitesmoke;
+  color: var(--primary-color);
 }
 
-.blog-details button{
-  width:20%;
+.blog-details button,.edit  button{
+  width:7rem;
   height: 5vh;
-  background-color: #f1356d;
+  margin-left: 2rem;
+  background-color: #f13535;
   border: 0;
   cursor:pointer;
   margin: 30px auto;
   border-radius: 10px;
-  color: whitesmoke;
+  color: var(--primary-color);
+}
+.blog-details button:first-of-type{
+  margin-right: 2rem;
+  background-color: var(--secondary-color);
+}
 
+.blog-details a{
+  text-decoration: none;
+  background-color: transparent;
+  color: var(--primary-color);
 }
 
 
 
-
-/* SAMPLEE */
-.container {
-  padding: 60px;
+.edit textarea{
+  width: 80%;
+  height: 10rem;
 }
 
-
-.ItemsContainer {
-  width: 100%;
-  height: 300px;
-  padding: 50px;
-  white-space: nowrap;
-  user-select: none;
-  cursor: grab;
-  overflow: hidden;
+.edit button{
+  background-color: var(--secondary-color)
 }
-
-
-.item {
-  border: 1px solid red;
-  width: 200px;
-  height: 200px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  background-color: gray;
-}
-
-
-.activeItems {
-  background-color: lightblue;
-  cursor: grabbing;
-}
-
-

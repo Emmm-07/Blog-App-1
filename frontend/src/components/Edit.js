@@ -1,25 +1,37 @@
 import { useParams } from "react-router-dom";
 import useFetch from "./useFetch";
-import { useState } from "react";
+import { useState,useEffect, useRef } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const Edit = () => {
     const {id} = useParams();
-    const [newBody,setnewBody] = useState('');
+    const [newBody,setNewBody] = useState('');
     const {data: blog, error, isPending} = useFetch('http://127.0.0.1:8000/api/blogs/'+ id);
     const history = useHistory();
+    const textAreaRef = useRef();
+    
+    useEffect(() => {
+        if (blog) {
+            setNewBody(blog.body);
+        }
+        if (textAreaRef.current){
+            textAreaRef.current.focus();
+        }
+    }, [blog]);
 
     const handleEdit = () => {
-        axios.put('http://127.0.0.1:8000/api/blogs/'+ id +'/',
-            {   
-                title:blog.title,
-                author:blog.author,
-                body:newBody
-            }
-        ).then(res=>{
-            history.push('/');
-        }).catch(error=>alert(error));
+        if (confirm("This will update the contents of the blog")==true){
+            axios.put('http://127.0.0.1:8000/api/blogs/'+ id +'/',
+                {   
+                    title:blog.title,
+                    author:blog.author,
+                    body:newBody
+                }
+            ).then(res=>{
+                history.push('/');
+            }).catch(error=>alert(error));
+        }
     }
 
      return (  
@@ -28,16 +40,17 @@ const Edit = () => {
             {error && <div>{ error }</div>}
             {blog && 
                 <div>
-                    <h2>Edit blog</h2>
+                    <h2>Edit Blog Content</h2>
                     <br />
                     <h2 style={{ color: '#f1356d'}}>{ blog.title }</h2>
                     <i>by { blog.author }</i>
                     <br/>
                     <br/>
-                    <textarea 
+                    <textarea   
                         required
+                        ref={textAreaRef}
                         value={newBody}
-                        onChange={(e)=>setnewBody(e.target.value)}
+                        onChange={(e)=>setNewBody(e.target.value)}
                     ></textarea>
                     <br />
                     <button onClick={handleEdit}>Update</button>

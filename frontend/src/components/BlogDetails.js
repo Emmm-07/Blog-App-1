@@ -11,12 +11,14 @@ const BlogDetails = () => {
     const history = useHistory();
 
     const handleDelete = () => {
-        axios.delete('http://127.0.0.1:8000/api/blogs/'+ id
+        if(confirm("Are you sure you want to delete this blog?")==true){
 
-        ).then((res)=>{
-            console.log("Successfully deleted blog");
-            history.push('/');
-        })
+            axios.delete('http://127.0.0.1:8000/api/blogs/'+ id
+            ).then((res)=>{
+                console.log("Successfully deleted blog");
+                history.push('/');
+            })
+         }
     }
     return (  
         <div className="blog-details">
@@ -29,7 +31,7 @@ const BlogDetails = () => {
                     <br/>
                     <br/>
                     <p>{ blog.body }</p>
-                    <Link to={ `/blogs/edit/${id}` } >Edit Blog</Link>
+                    <button><Link to={ `/blogs/edit/${id}` } >Edit Blog</Link></button>
                     <button onClick={handleDelete}>Delete Blog</button>
                 </article>
             )}

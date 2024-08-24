@@ -16,7 +16,8 @@ code {
   margin: 0;
   padding: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: white;
+  background-color: var(--primary-color);
+  color: var(--tertiary-color);
 }
 
 
@@ -30,7 +31,7 @@ code {
   border-bottom: 1px solid #f2f2f2;
 }
 .navbar h1{
-  color: #f1356d;
+  color: var(--secondary-color);
  
 }
 .navbar .links{
@@ -44,7 +45,7 @@ code {
 
 
 .navbar a:hover{
-  color: #f1356d;
+  color: var(--secondary-color);
   font-size: large;
 }
 
