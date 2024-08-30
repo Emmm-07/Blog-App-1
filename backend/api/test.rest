@@ -1,0 +1,26 @@
+GET http://127.0.0.1:8000/api/blogs
+Content-Type: application/json
+
+{}
+
+###
+
+POST http://127.0.0.1:8000/login
+Content-Type: application/json
+
+{ "username":"marcus","password":"marcuss123" }
+
+###
+
+POST http://127.0.0.1:8000/signup
+Content-Type: application/json
+
+{ "username":"marcus","password":"marcuss123","email":"sample@gmail.com" }
+
+
+###
+GET http://127.0.0.1:8000/test_token
+Content-Type: application/json
+Authorization: Token fe41339a9eaa4e45f62d0569857ea9569e40b1c7 
+
+{"username":"alamore","password":"pass123", "email":"sample@gmail.com"}
