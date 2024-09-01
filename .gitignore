@@ -23,3 +23,8 @@
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*
 /venv
+
+
+/backend/myproject/__pycache__
+/backend/api/__pycache__
+/backend/api/migrations/__pycache__
