@@ -1,6 +1,6 @@
-const About = () => {
+const Search = () => {
     return (  
-        <div className="about">
+        <div className="search">
             <h2>About Us</h2>
             <br />
             <p>This is my first DjangoREST + ReactJS Application. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -14,4 +14,4 @@ const About = () => {
     );
 }
  
-export default About;
+export default Search;

@@ -48,7 +48,7 @@ def signup (request):
             'access': str(refresh.access_token),
         })
     
-    return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    return Response({'detail':serializer.errors},status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['POST'])

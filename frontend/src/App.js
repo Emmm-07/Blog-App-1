@@ -7,6 +7,8 @@ import Search from './components/Search';
 import BlogDetails from './components/BlogDetails';
 import NotFound from './components/NotFound'
 import Edit from './components/Edit';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 
 function App() {
@@ -15,9 +17,18 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        {/* <Navbar /> */}
+        
         <div className="content">
           <Switch>
+          <Route exact path="/login">
+              <Login/>
+          </Route>
+          <Route exact path="/signup">
+              <Signup/>
+          </Route>
+
+
             <Route exact path="/">
               <Home />
             </Route>
