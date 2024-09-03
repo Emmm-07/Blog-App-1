@@ -23,6 +23,6 @@ Content-Type: application/json
 ###
 GET http://127.0.0.1:8000/test_token
 Content-Type: application/json
-Authorization: Token fe41339a9eaa4e45f62d0569857ea9569e40b1c7 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1Mzc0MzAyLCJpYXQiOjE3MjUzNzI1MDIsImp0aSI6ImIwODQzZGJhYTAxZjQxMjZiZDg0MTRiM2FkYTNmNWQ2IiwidXNlcl9pZCI6Mn0.Syn9-5JAU4FwMyBc-JSvxcSvrQos1tn014rdmWSXTO4 
 
-{"username":"alamore","password":"pass123", "email":"sample@gmail.com"}
+{"username":"marc","password":"marc123"}

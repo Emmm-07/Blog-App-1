@@ -9,48 +9,97 @@ import NotFound from './components/NotFound'
 import Edit from './components/Edit';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import PrivateRoute from './components/PrivateRoute';
 
 
 function App() {
  
 
   return (
-    <Router>
-      <div className="App">
-        {/* <Navbar /> */}
-        
-        <div className="content">
-          <Switch>
-          <Route exact path="/login">
-              <Login/>
-          </Route>
-          <Route exact path="/signup">
-              <Signup/>
-          </Route>
+      <Router>
 
-
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/create">
-              <Create />
-            </Route>
-            <Route exact path="/search">
-              <Search />
-            </Route>
-            <Route exact path="/blogs/:id">
-              <BlogDetails />
-            </Route>
-            <Route exact path="/blogs/edit/:id">
-              <Edit/>
-            </Route>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
+        <div className="App">
+          <div className="content">
+            <Switch>
+                <Route exact path= "/login">
+                    <Login/>
+                </Route>
+                <Route exact path= "/signup">
+                    <Signup/>
+                </Route>
+                
+                <PrivateRoute exact path = "/">
+                   <Navbar/>
+                    <Home/>
+                </PrivateRoute>
+                <PrivateRoute exact path="/create">
+                    <Navbar/>
+                    <Create />
+                </PrivateRoute>
+                <PrivateRoute exact path="/search">
+                    <Navbar/>
+                    <Search />
+                </PrivateRoute>
+                <PrivateRoute exact path="/blogs/:id">
+                    <Navbar/>
+                    <BlogDetails />
+                </PrivateRoute>
+                <PrivateRoute exact path="/blogs/edit/:id">
+                    <Navbar/>
+                    <Edit />
+                </PrivateRoute>
+                <Route path="*">
+                    <Navbar/>
+                    <NotFound />
+                </Route>
+                
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
+
+      </Router>
+
+
+
+
+
+
+    // <Router>
+    //   <div className="App">
+    //     {/* <Navbar /> */}
+        
+    //     <div className="content">
+    //       <Switch>
+    //       <Route exact path="/login">
+    //           <Login/>
+    //       </Route>
+    //       <Route exact path="/signup">
+    //           <Signup/>
+    //       </Route>
+
+
+    //         <Route exact path="/">
+    //           <Home />
+    //         </Route>
+    //         <Route exact path="/create">
+    //           <Create />
+    //         </Route>
+    //         <Route exact path="/search">
+    //           <Search />
+    //         </Route>
+    //         <Route exact path="/blogs/:id">
+    //           <BlogDetails />
+    //         </Route>
+    //         <Route exact path="/blogs/edit/:id">
+    //           <Edit/>
+    //         </Route>
+    //         <Route path="*">
+    //           <NotFound />
+    //         </Route>
+    //       </Switch>
+    //     </div>
+    //   </div>
+    // </Router>
   );
 }
 
