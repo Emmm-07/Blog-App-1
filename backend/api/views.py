@@ -27,8 +27,10 @@ from rest_framework.permissions import IsAuthenticated
 class BlogViewSet(viewsets.ModelViewSet):
     queryset =  Blog.objects.all()
     serializer_class = BlogSerializer
-
-
+    permission_classes = [IsAuthenticated]
+    
+    def get_serializer_context(self):
+        return {'request':self.request}
 
 
 @api_view(['POST'])
@@ -70,8 +72,8 @@ def login (request):
 
 
 
-@api_view(['GET'])
-@authentication_classes([SessionAuthentication,TokenAuthentication])
-@permission_classes([IsAuthenticated])
-def test_token (request):
-    return Response(f"Passed for ")
+# @api_view(['GET'])
+# @authentication_classes([SessionAuthentication,TokenAuthentication])
+# @permission_classes([IsAuthenticated])
+# def test_token (request):
+#     return Response(f"Passed for ")

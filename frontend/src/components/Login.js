@@ -1,11 +1,14 @@
 import axios from "axios";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const Login = () => {
+    
+
     const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState(''); 
     const history = useHistory();
+    const dateNow = new Date();      
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -22,6 +25,8 @@ const Login = () => {
                 console.log('access:  '+response.data.access);
                 localStorage.setItem('access',response.data.access);
                 localStorage.setItem('refresh',response.data.refresh);
+                localStorage.setItem('loginTime', dateNow.getTime());    //current time in milliseconds
+                
                 history.push('/')
             }else{
                 alert("login failed");

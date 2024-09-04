@@ -10,10 +10,38 @@ import Edit from './components/Edit';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import PrivateRoute from './components/PrivateRoute';
+import { useEffect } from 'react';
 
 
 function App() {
+  useEffect(()=>{
+    const checkTokenExpiration = () =>{
+        var timeNow = new Date(); 
+        timeNow = timeNow.getTime();   // time now in millis
+        const loginTime = localStorage.getItem('loginTime');
+        
+        
+        if(loginTime && timeNow - loginTime > 20000){
+          localStorage.removeItem('access');
+          localStorage.removeItem('loginTime');
+          console.log("Expireddddddddddddddddd");
+          console.log("helllo");
+          console.log(loginTime);
+          alert("Session expired, Please Log in again")
+          return
+        }
+        console.log(timeNow - loginTime)
+    }
+
+    const interval = setInterval(checkTokenExpiration,2000);
+    checkTokenExpiration();
+
+    return () => {clearInterval(interval)};
+
+  },[]) 
  
+
+
 
   return (
       <Router>

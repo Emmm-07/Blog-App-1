@@ -7,6 +7,7 @@ const useFetch = (url) => {
     const [data, setData] = useState(null); 
     const [isPending, setIsPending] = useState(true)
     const [error, setError] = useState(null);
+    const token = localStorage.getItem('access');
 
     useEffect(()=>{
         const abortCont = new AbortController();
@@ -19,7 +20,11 @@ const useFetch = (url) => {
         setTimeout(()=>{
 
         axios.get(url,{ 
-            signal: abortCont.signal
+            signal: abortCont.signal,
+            headers:{
+                'Content-Type':"application/json" ,
+                'Authorization': `Bearer ${token}`
+             }
         }).then(response => {
             return response.data;
         }).then((data=>{
@@ -28,6 +33,10 @@ const useFetch = (url) => {
             setIsPending(false);
             setError(null);
         })).catch(error => {
+            if(error.response && error.response.status === 401){
+                alert("Error 401");
+            }
+
             if(error.name === 'AbortError'){
                 console.log('fetch aborted');
             }else{

@@ -1,16 +1,26 @@
-GET http://127.0.0.1:8000/api/blogs
+POST http://127.0.0.1:8000/api/blogs/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NDU4MDI0LCJpYXQiOjE3MjU0NTYyMjQsImp0aSI6Ijk2MDJlZmJkNWQ4NTRmNjdiNzQyYjc5NzkwZjExYTg2IiwidXNlcl9pZCI6M30.G6Gg8n7foXn8PdUSjvdlyZLNOcUBymZZpot_zvMDOBc
 
 {
-
+    "title": "My First Blog Post",
+    "body": "This is the body of my first blog post."
 }
+
+###
+
+DELETE  http://127.0.0.1:8000/api/blogs/4/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NDU4MDI0LCJpYXQiOjE3MjU0NTYyMjQsImp0aSI6Ijk2MDJlZmJkNWQ4NTRmNjdiNzQyYjc5NzkwZjExYTg2IiwidXNlcl9pZCI6M30.G6Gg8n7foXn8PdUSjvdlyZLNOcUBymZZpot_zvMDOBc
+
+{}
 
 ###
 
 POST http://127.0.0.1:8000/login
 Content-Type: application/json
 
-{ "username":"melv","password":"melv123" }
+{ "username":"marc","password":"marc123" }
 
 ###
 
@@ -20,9 +30,9 @@ Content-Type: application/json
 { "username":"marc","password":"marc123","email":"marc@gmail.com", "first_name":"Marc","last_name":"Garcia"}
 
 
-###
-GET http://127.0.0.1:8000/test_token
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1Mzc0MzAyLCJpYXQiOjE3MjUzNzI1MDIsImp0aSI6ImIwODQzZGJhYTAxZjQxMjZiZDg0MTRiM2FkYTNmNWQ2IiwidXNlcl9pZCI6Mn0.Syn9-5JAU4FwMyBc-JSvxcSvrQos1tn014rdmWSXTO4 
+# ###
+# GET http://127.0.0.1:8000/test_token
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1Mzc0MzAyLCJpYXQiOjE3MjUzNzI1MDIsImp0aSI6ImIwODQzZGJhYTAxZjQxMjZiZDg0MTRiM2FkYTNmNWQ2IiwidXNlcl9pZCI6Mn0.Syn9-5JAU4FwMyBc-JSvxcSvrQos1tn014rdmWSXTO4 
 
-{"username":"marc","password":"marc123"}
+# {"username":"marc","password":"marc123"}

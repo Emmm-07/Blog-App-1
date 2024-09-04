@@ -5,22 +5,24 @@ const Create = () => {
 
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    const [author, setAuthor] = useState('');
+    // const [author, setAuthor] = useState('');
     const [isPending, setIsPending] = useState(false)
     const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const blog = { title, body, author };
+        const blog = { title, body };
         console.log(blog);
         setIsPending(true);
+        const token = localStorage.getItem('access');
         const data = JSON.stringify(blog)
 
         axios.post('http://127.0.0.1:8000/api/blogs/',
            data
         ,{
             headers:{
-               'Content-Type':"application/json" 
+               'Content-Type':"application/json" ,
+               'Authorization': `Bearer ${token}`
             }
         }).then((response)=>{
             console.log("Done Adding Blog");
@@ -51,12 +53,12 @@ const Create = () => {
                 onChange={(e)=> setBody(e.target.value)}
                 ></textarea>
 
-                <label>Blog Author:</label>
+                {/* <label>Blog Author:</label> */}
                 
-                <input
+                {/* <input
                 value={author}
                 onChange={(e)=> setAuthor(e.target.value)}
-                />
+                /> */}
                    
               
                 {!isPending && <button>Add Blog</button>}

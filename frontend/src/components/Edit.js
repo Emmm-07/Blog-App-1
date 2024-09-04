@@ -10,7 +10,8 @@ const Edit = () => {
     const {data: blog, error, isPending} = useFetch('http://127.0.0.1:8000/api/blogs/'+ id);
     const history = useHistory();
     const textAreaRef = useRef();
-    
+    const token = localStorage.getItem('access');
+
     useEffect(() => {
         if (blog) {
             setNewBody(blog.body);
@@ -27,6 +28,12 @@ const Edit = () => {
                     title:blog.title,
                     author:blog.author,
                     body:newBody
+                },
+                {
+                    headers:{
+                        'Content-Type':"application/json" ,
+                        'Authorization': `Bearer ${token}`
+                     }
                 }
             ).then(res=>{
                 history.push('/');
