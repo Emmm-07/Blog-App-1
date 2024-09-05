@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-
+from rest_framework.decorators import action
 
 
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
@@ -31,6 +31,20 @@ class BlogViewSet(viewsets.ModelViewSet):
     
     def get_serializer_context(self):
         return {'request':self.request}
+    
+    # Custom action to get blogs by the current user
+    @action(detail=False, methods=['GET'], url_path='my_blogs')
+    def my_blogs(self,request):
+        user = request.user
+        blogs = Blog.objects.filter(author=user)
+        blogs = blogs.order_by('-created_at')
+        serializer = self.get_serializer(blogs, many=True)
+        return  Response(serializer.data)
+    
+    def get_queryset(self):
+        blogs = Blog.objects.all()
+        blogs = blogs.order_by('-created_at')
+        return blogs
 
 
 @api_view(['POST'])

@@ -33,10 +33,9 @@ const useFetch = (url) => {
             setIsPending(false);
             setError(null);
         })).catch(error => {
-            if(error.response && error.response.status === 401){
-                alert("Error 401");
-            }
-
+            // if(error.response && error.response.status === 401){
+            //     alert("Error 401");
+            // }
             if(error.name === 'AbortError'){
                 console.log('fetch aborted');
             }else{
@@ -44,6 +43,7 @@ const useFetch = (url) => {
                 setIsPending(false);
             }
         });
+        
         },1000); // in here, setTimeOut is only used for simulation of the Loading...., Do not do this in production
 
 

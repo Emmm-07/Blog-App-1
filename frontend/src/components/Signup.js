@@ -27,7 +27,7 @@ const Signup = () => {
             if(response.data.access){
                 console.log('access:  '+response.data.access);
                 localStorage.setItem('access',response.data.access);
-                localStorage.setItem('refresh',response.data.refresh);
+                // localStorage.setItem('refresh',response.data.refresh);
                 history.push('/login');
             }else {
                 alert('Signup failed');

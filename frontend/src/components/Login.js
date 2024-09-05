@@ -24,7 +24,7 @@ const Login = () => {
             if(response.data.access){
                 console.log('access:  '+response.data.access);
                 localStorage.setItem('access',response.data.access);
-                localStorage.setItem('refresh',response.data.refresh);
+                // localStorage.setItem('refresh',response.data.refresh);
                 localStorage.setItem('loginTime', dateNow.getTime());    //current time in milliseconds
                 
                 history.push('/')
@@ -32,7 +32,8 @@ const Login = () => {
                 alert("login failed");
             }
         }).catch(error=>{
-            alert(error.response.detail);       //Checks only if the 'username' already exists
+            // alert(error.response.detail);       //Checks only if the 'username' already exists
+            alert("Invalid credentials")                                      //Checks only if the 'username' already exists
         });
 
     }

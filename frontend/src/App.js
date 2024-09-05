@@ -14,26 +14,28 @@ import { useEffect } from 'react';
 
 
 function App() {
+  const tokenLife = 86.4 * (10**6);    // 1 day in millis
+  const delay = 3.6 * (10**6);        // 1 hour in millis
+
   useEffect(()=>{
+    
     const checkTokenExpiration = () =>{
         var timeNow = new Date(); 
         timeNow = timeNow.getTime();   // time now in millis
         const loginTime = localStorage.getItem('loginTime');
         
-        
-        if(loginTime && timeNow - loginTime > 20000){
+        if(loginTime && timeNow - loginTime > tokenLife){
+          
           localStorage.removeItem('access');
           localStorage.removeItem('loginTime');
-          console.log("Expireddddddddddddddddd");
-          console.log("helllo");
-          console.log(loginTime);
-          alert("Session expired, Please Log in again")
-          return
+
+          alert("Session expired, please Log in again");
+          window.location.href = '/login';
         }
         console.log(timeNow - loginTime)
     }
 
-    const interval = setInterval(checkTokenExpiration,2000);
+    const interval = setInterval(checkTokenExpiration, delay);       //check every hour
     checkTokenExpiration();
 
     return () => {clearInterval(interval)};

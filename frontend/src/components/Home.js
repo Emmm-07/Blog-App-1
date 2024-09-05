@@ -9,7 +9,7 @@ const Home = () => {
     //     setBlogs(newBlogList);
     // }
 
-    const { data: blogs, isPending, error } = useFetch('http://127.0.0.1:8000/api/blogs/');
+    const { data: blogs, isPending, error } = useFetch('http://127.0.0.1:8000/api/blogs/my_blogs');
    
         
    

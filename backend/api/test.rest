@@ -9,6 +9,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ###
 
+GET http://127.0.0.1:8000/api/blogs/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NzEwODE5LCJpYXQiOjE3MjU1MzgwMTksImp0aSI6IjJmYTgwMTc1YWU3NzQ2MzJhNWE5MzViMWI0OTg3MWRiIiwidXNlcl9pZCI6M30.aKg00_-70ymhkl53QRf9aG8WXIt7WYQ8h7WOrW9TNpg
+
+{}
+
+###
+GET http://127.0.0.1:8000/api/blogs/my_blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NzEwODE5LCJpYXQiOjE3MjU1MzgwMTksImp0aSI6IjJmYTgwMTc1YWU3NzQ2MzJhNWE5MzViMWI0OTg3MWRiIiwidXNlcl9pZCI6M30.aKg00_-70ymhkl53QRf9aG8WXIt7WYQ8h7WOrW9TNpg
+
+{}
+
+###
+
 DELETE  http://127.0.0.1:8000/api/blogs/4/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NDU4MDI0LCJpYXQiOjE3MjU0NTYyMjQsImp0aSI6Ijk2MDJlZmJkNWQ4NTRmNjdiNzQyYjc5NzkwZjExYTg2IiwidXNlcl9pZCI6M30.G6Gg8n7foXn8PdUSjvdlyZLNOcUBymZZpot_zvMDOBc

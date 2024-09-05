@@ -1,15 +1,14 @@
+import useFetch from "./useFetch";
+import BlogList from "./BlogList";
 const Search = () => {
+    const { data: blogs, isPending, error } = useFetch('http://127.0.0.1:8000/api/blogs');
     return (  
         <div className="search">
-            <h2>About Us</h2>
+            <h2>Search</h2>
             <br />
-            <p>This is my first DjangoREST + ReactJS Application. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
-                id est laborum.</p>
+            {error && <div style={{ color:'red',fontSize:'50px' }}>{ error }</div>}
+            {isPending && <div>Loading.... (Fetching Data from the database)</div>}
+            {blogs && <BlogList blogs={blogs}  /> }              
         </div>
     );
 }
