@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useState,useEffect } from 'react';
 import { useHistory,Link } from 'react-router-dom';
+import show from '../images/show.png';
+import hide from '../images/hide.png';
 
 const Login = () => {
     
@@ -9,6 +11,8 @@ const Login = () => {
     const [password, setPassword] = useState(''); 
     const history = useHistory();
     const dateNow = new Date();      
+    const [showPass,setShowPass] = useState(true);
+
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -56,7 +60,7 @@ const Login = () => {
             />
 
             <label>Password</label>
-            <input type="password" 
+            <input type={showPass?"text":"password" }
               required
               value={password}
               onChange={(e)=>setPassword(e.target.value)}
@@ -66,6 +70,11 @@ const Login = () => {
             <br />
             <p>Don't have an account yet?<Link to='/signup'> Sign up</Link></p>
         </form>
+        <img className='passwordIcon' 
+                src={showPass?show:hide} 
+                onClick={()=>setShowPass(showPass?false:true)}
+                style={{opacity:(password==='')?0:1}}
+            />
       </div>
     );
 }

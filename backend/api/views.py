@@ -58,7 +58,7 @@ def signup (request):
         # token = Token.objects.create(user=user)
 
         refresh = RefreshToken.for_user(user)
-
+        
         return Response({
             'refresh': str(refresh),
             'access': str(refresh.access_token),
