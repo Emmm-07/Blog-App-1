@@ -25,9 +25,9 @@ function App() {
         const loginTime = localStorage.getItem('loginTime');
         
         if(loginTime && timeNow - loginTime > tokenLife){
-          
-          localStorage.removeItem('access');
-          localStorage.removeItem('loginTime');
+          // localStorage.removeItem('access');
+          // localStorage.removeItem('loginTime');
+          localStorage.clear()
 
           alert("Session expired, please Log in again");
           window.location.href = '/login';

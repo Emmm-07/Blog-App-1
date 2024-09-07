@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState,useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory,Link } from 'react-router-dom';
 
 const Login = () => {
     
@@ -32,8 +32,13 @@ const Login = () => {
                 alert("login failed");
             }
         }).catch(error=>{
-            // alert(error.response.detail);       //Checks only if the 'username' already exists
-            alert("Invalid credentials")                                      //Checks only if the 'username' already exists
+
+            try{
+                alert(error.response.status===404 && "Invalid credentials");
+            }catch(err){
+                alert("Network Error, server is offline");
+            }
+
         });
 
     }
@@ -41,6 +46,8 @@ const Login = () => {
     return (  
       <div className="login">
         <form onSubmit={handleLogin}>
+            <h1>Login</h1>
+            <p>Sign in to continue</p>
             <label>Username</label>
             <input type="text" 
                 required
@@ -49,13 +56,15 @@ const Login = () => {
             />
 
             <label>Password</label>
-            <input type="text" 
+            <input type="password" 
               required
               value={password}
               onChange={(e)=>setPassword(e.target.value)}
             />
-            
+            <p><Link>Forgot password?</Link></p>
             <button>Login</button>
+            <br />
+            <p>Don't have an account yet?<Link to='/signup'> Sign up</Link></p>
         </form>
       </div>
     );

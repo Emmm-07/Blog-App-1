@@ -39,7 +39,10 @@ const Signup = () => {
 
     return (  
         <div className="signup">
+           
             <form onSubmit={handleSignup}>
+            <h1>Create new account</h1>
+            
                 <input type="text" 
                     required
                     value={firstname}

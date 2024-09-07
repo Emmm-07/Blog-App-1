@@ -5,7 +5,8 @@ import { useHistory } from 'react-router-dom';
 const Navbar = () => {
     const history = useHistory()
     const handleLogout = (e) =>{
-        localStorage.removeItem('access');
+        // localStorage.removeItem('access');
+        localStorage.clear();                       //remove all stored items/tokens
         history.push("/login");
     }
     return ( 

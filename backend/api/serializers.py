@@ -7,11 +7,11 @@ from django.contrib.auth.models import User
 class BlogSerializer(serializers.ModelSerializer):
     author_first_name = serializers.CharField(source='author.first_name', read_only=True)
     author_last_name = serializers.CharField(source='author.last_name', read_only=True)
-    created_at = serializers.DateTimeField(format='%b %d, %Y')
+    created_at = serializers.DateTimeField(format='%b %d, %Y',required=False)
     class Meta:
         model = Blog
         fields = ['id', 'title', 'body', 'author_first_name', 'author_last_name', 'created_at']
-        read_only_fields = ['author', 'created_at']
+        read_only_fields = [ 'created_at', 'author']
     def create(self, validated_data):               #This method is overridden to customize the creation of a Blog instance.
         request = self.context.get('request',None)
         

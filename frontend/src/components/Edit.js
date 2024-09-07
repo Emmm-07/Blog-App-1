@@ -26,8 +26,8 @@ const Edit = () => {
             axios.put('http://127.0.0.1:8000/api/blogs/'+ id +'/',
                 {   
                     title:blog.title,
-                    author:blog.author,
-                    body:newBody
+                    body:newBody,
+
                 },
                 {
                     headers:{
@@ -60,7 +60,7 @@ const Edit = () => {
                         onChange={(e)=>setNewBody(e.target.value)}
                     ></textarea>
                     <br />
-                    <button onClick={handleEdit}>Update</button>
+                    <button onClick={handleEdit}>Save</button>
                 </div>
             }
             

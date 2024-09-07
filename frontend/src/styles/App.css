@@ -85,3 +85,53 @@
 .edit button{
   background-color: var(--secondary-color)
 }
+
+
+.login, .signup{
+  /* border: 2px solid red; */
+  height: 80vh;
+  align-items: center;
+  align-content: center;
+  
+}
+.login form, .signup form{
+  /* border: 2px solid red; */
+  display: grid;
+  grid-template-columns: 1;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  gap: 1rem;
+  width: 20rem;
+}
+.login form label{
+  text-align: left;
+}
+.login h1{
+  font-size: 2rem;
+}
+.login p{
+  font-size: 0.8rem;
+}
+.login form input{
+  height: 2.5rem;
+  width: 16rem;
+  font-size: 1rem;
+  /* font-weight: 50; */
+  color: black;
+  padding-left: 1rem;
+  background-color: white;
+  justify-self: center;
+}
+.login button{
+  justify-self: center;
+  height: 2.5rem;
+  width: 10rem;
+  background-color: white;
+  cursor: pointer;
+}
+.login form a{
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+

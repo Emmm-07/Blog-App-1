@@ -36,6 +36,8 @@ const BlogDetails = () => {
                     <br/>
                     <br/>
                     <p>{ blog.body }</p>
+                    <br />
+                    <p>Date posted: {blog.created_at}</p>   
                     <button><Link to={ `/blogs/edit/${id}` } >Edit Blog</Link></button>
                     <button onClick={handleDelete}>Delete Blog</button>
                 </article>

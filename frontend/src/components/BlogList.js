@@ -3,7 +3,7 @@ const BlogList = ({ blogs }) => {  //Props
     
     return (  
         <div className="blog-list">
-            <h2>All Blogs</h2>
+            <h2>My Blogs</h2>
             <br />
         {blogs.map((blog)=>(
             <div className="blog-preview" key={ blog.id }>
