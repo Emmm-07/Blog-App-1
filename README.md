@@ -1,6 +1,5 @@
 # Blog-App
-A simple blog app using  ReactJs and djangoREST API with CRUD functions.
-This is my first ReactJS project.
+A simple web blogging app where you can post blogs, edit/delete your blogs, see other user's blogs and leave a heart react if you liked a blog. This has a Json Web Token (JWT) authentication to ensure a secure blogging experience.
 
 ## To run the Frontend
 ../frontend > npm start
