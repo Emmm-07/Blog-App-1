@@ -10,6 +10,8 @@ A simple web blogging app where you can post blogs, edit/delete your blogs, see 
 ../backend > python manage.py runserver
 
 ## Features
+- Forgot Password function
+- Heart React and Comments
 - Uses JWT Authentication
 - Automatic logout when session/token expires (1 day)
 - CRUD functions for Blogs per user
