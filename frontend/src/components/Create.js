@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import  axios  from 'axios';
 import { useHistory } from 'react-router-dom';
+import Modal from './Modal';
+import { hostUrl } from "../config";
 const Create = () => {
 
     const [title, setTitle] = useState('');
@@ -8,6 +10,8 @@ const Create = () => {
     // const [author, setAuthor] = useState('');
     const [isPending, setIsPending] = useState(false)
     const history = useHistory();
+    const [modalShow, setModalShow] = useState("none");
+    const [modalContent,setModalContent] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,7 +21,7 @@ const Create = () => {
         const token = localStorage.getItem('access');
         const data = JSON.stringify(blog)
 
-        axios.post('http://127.0.0.1:8000/api/blogs/',
+        axios.post(hostUrl + 'api/blogs/',
            data
         ,{
             headers:{
@@ -29,7 +33,8 @@ const Create = () => {
             setIsPending(false);
             history.push('/');
         }).catch((error)=>{
-            alert(error);
+           setModalContent(error);
+           setModalShow("block")
         })
     
 
@@ -63,7 +68,8 @@ const Create = () => {
               
                 {!isPending && <button>Add Blog</button>}
                 {isPending && <button disabled>Adding....</button>}
-                
+                <Modal modalContent={modalContent} modalShow={modalShow} setModalShow={setModalShow}/>
+
             </form>
         </div>
     );

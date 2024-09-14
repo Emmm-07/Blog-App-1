@@ -59,3 +59,120 @@ code {
   /* border: red 2px solid; */
   color: #23337a;
 }
+
+
+
+  /* Modal pop up */
+  .modal {
+  display:block;
+  background:rgba(0, 0, 0, .8);
+  position:fixed;
+  left:0;
+  top:0;
+  height:100%;
+  width: 100%;
+  margin: auto;
+  z-index: 1000;
+  /* border: blue 3px solid; */
+  
+}
+
+.modal:target {
+  display:table;
+}
+
+.modal__dialog {
+  display:table-cell;
+  vertical-align:middle;
+  /* border: yellow 2px solid; */
+}
+
+.modal__content {
+  background: var(--primary-color);
+
+  border-radius: 2rem;
+  height: 15rem;
+  width: 20rem;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: slideUp 0.3s ease-in-out;
+  /* border: red 2px solid;   */
+}
+.modal__header{
+  background-color: rgba(230, 62, 62, 0.93);
+  height: 30%;
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  /* text-align: left; */
+  align-content: center;
+  color: white;
+  font-size: 2rem;
+  padding-left: 1rem;
+}
+.modal__header img{
+  background-color: rgba(230, 62, 62, 0.93);
+  height: 2.5rem;
+  margin-right: 0.5rem;
+}
+.modal_body{
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  position: relative;
+  /* border: red 2px solid; */
+  /* height: 50rem; */
+  height: 34%;
+  width: 70%;
+  /* overflow:auto; */
+  /* display: grid; */
+  /* grid-template-columns: repeat(3,1fr); */
+  /* grid-template-rows: auto auto auto; */
+  /* gap: 2rem; */
+  padding: 3rem 2rem 2rem 3rem;
+  /* align-items: center; */
+  /* justify-content: center;   */
+  text-align: center;
+  font-size: 1rem;
+  color: black;
+  
+}
+
+
+.modal__close {
+  /* font-size: 30px;
+  width:2rem; */
+  width: 5rem;
+  height: 2rem;
+  border-radius: 2rem;
+  color:wheat;
+  text-decoration: none;
+  position:absolute;
+  top: 12rem;
+  left: 7.5rem;
+  text-align: center;
+  color: var(--primary-color);
+  /* text-align: center; */
+  align-content: center;
+  background-color: rgba(230, 62, 62, 0.93);
+  z-index: 1;
+    /*box-shadow: -5px 5px 15px black; */
+}
+
+
+.modal__close:hover{
+
+  /* border-radius: 10rem; */
+  /* background-color: rgba(255, 255, 255, 0.1); */
+}
+
+@keyframes slideUp {
+  from {
+    opacity:0;
+    bottom: -200px;
+  }
+  to {
+    opacity:1;
+    bottom:0;
+  }
+}

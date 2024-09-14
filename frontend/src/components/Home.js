@@ -1,7 +1,7 @@
 // shortcut: 'sfc' then TAB
 import BlogList from "./BlogList";
 import useFetch from "./useFetch";
-
+import { hostUrl } from "../config";
 
 const Home = () => {
     // const handleDelete = (id) => {
@@ -9,7 +9,7 @@ const Home = () => {
     //     setBlogs(newBlogList);
     // }
 
-    const { data: blogs, isPending, error } = useFetch('http://127.0.0.1:8000/api/blogs/my_blogs');
+    const { data: blogs, isPending, error } = useFetch(hostUrl + 'api/blogs/my_blogs');
    
         
    
@@ -18,7 +18,8 @@ const Home = () => {
         
         <div className="homepage">
         {error && <div style={{ color:'red',fontSize:'50px' }}>{ error }</div>}
-        {isPending && <div>Loading.... (Fetching Data from the database)</div>}
+        {/* {isPending && <div>Loading.... (Fetching Data from the database)</div>} */}
+        {isPending &&  <div class="loader"></div> }
         {blogs && <BlogList blogs={blogs} /*handleDelete={handleDelete}*/ /> }              
             
 

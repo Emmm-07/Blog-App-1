@@ -9,9 +9,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ###
 
-GET http://127.0.0.1:8000/api/blogs/
+GET http://127.0.0.1:8000/api/blogs/6
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NzEwODE5LCJpYXQiOjE3MjU1MzgwMTksImp0aSI6IjJmYTgwMTc1YWU3NzQ2MzJhNWE5MzViMWI0OTg3MWRiIiwidXNlcl9pZCI6M30.aKg00_-70ymhkl53QRf9aG8WXIt7WYQ8h7WOrW9TNpg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MjQ4OTU1LCJpYXQiOjE3MjYwNzYxNTUsImp0aSI6IjQxMjZlMmYyZjI2YjRiNjdiYmZjOGU5NjJhOWY2MDQ4IiwidXNlcl9pZCI6Mn0.rlLNfbjs9AqniyTFUypu93JLW963qY6wjntDfVmb-g4
+
+{}
+
+###
+
+DELETE http://127.0.0.1:8000/api/blogs/7/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MjQ0NDQ0LCJpYXQiOjE3MjYwNzE2NDQsImp0aSI6ImE0YzIyOWIwYWUwZDRlNzg5M2JkYjczZDhmOGFiYjZmIiwidXNlcl9pZCI6M30.pA7OKu2y-tmP5Fx8PvgbOagnXGPLE27dmpAmMjhVfyM
 
 {}
 
@@ -29,7 +37,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ###
 GET http://127.0.0.1:8000/api/blogs/my_blogs
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI1NzEwODE5LCJpYXQiOjE3MjU1MzgwMTksImp0aSI6IjJmYTgwMTc1YWU3NzQ2MzJhNWE5MzViMWI0OTg3MWRiIiwidXNlcl9pZCI6M30.aKg00_-70ymhkl53QRf9aG8WXIt7WYQ8h7WOrW9TNpg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2MjUwMDU1LCJpYXQiOjE3MjYwNzcyNTUsImp0aSI6ImUzMTE4ZDJkNWUyZDRjOTY4NGY0ODdiYjkzZjYyM2VjIiwidXNlcl9pZCI6M30.MjANV4r4wTND7mukRDgDN5NGa8rq_9cAE3jIGhSmTUA
 
 {}
 
@@ -54,6 +62,19 @@ POST http://127.0.0.1:8000/signup
 Content-Type: application/json
 
 { "username":"marc","password":"marc123","email":"marc@gmail.com", "first_name":"Marc","last_name":"Garcia"}
+
+
+### Check email
+
+POST http://127.0.0.1:8000/check_email
+Content-Type: application/json
+
+{ "email":"jcg@gmail.com"}
+
+
+
+
+
 
 
 # ###

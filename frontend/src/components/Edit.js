@@ -3,14 +3,19 @@ import useFetch from "./useFetch";
 import { useState,useEffect, useRef } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Modal from "./Modal";
+import { hostUrl } from "../config";
 
 const Edit = () => {
     const {id} = useParams();
     const [newBody,setNewBody] = useState('');
-    const {data: blog, error, isPending} = useFetch('http://127.0.0.1:8000/api/blogs/'+ id);
+    const {data: blog, error, isPending} = useFetch(hostUrl + 'api/blogs/'+ id);
     const history = useHistory();
     const textAreaRef = useRef();
     const token = localStorage.getItem('access');
+    const [modalShow, setModalShow] = useState("none");
+    const [modalContent,setModalContent] = useState("");
+
 
     useEffect(() => {
         if (blog) {
@@ -22,8 +27,8 @@ const Edit = () => {
     }, [blog]);
 
     const handleEdit = () => {
-        if (confirm("This will update the contents of the blog")==true){
-            axios.put('http://127.0.0.1:8000/api/blogs/'+ id +'/',
+        // if (confirm("This will update the contents of the blog")==true){
+            axios.put(hostUrl + 'api/blogs/'+ id +'/',
                 {   
                     title:blog.title,
                     body:newBody,
@@ -37,13 +42,16 @@ const Edit = () => {
                 }
             ).then(res=>{
                 history.push('/');
-            }).catch(error=>alert(error));
-        }
+            }).catch(error=>{
+                setModalContent(error);
+                setModalShow("block")
+            });
+        // }
     }
 
      return (  
         <div className="edit">
-            {isPending && <div>Loading...</div>}
+             {isPending &&  <div class="loader"></div> }
             {error && <div>{ error }</div>}
             {blog && 
                 <div>
@@ -64,7 +72,7 @@ const Edit = () => {
                 </div>
             }
             
-            
+            <Modal modalContent={modalContent} modalShow={modalShow} setModalShow={setModalShow}/>
         </div>
     );
 }

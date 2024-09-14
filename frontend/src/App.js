@@ -9,11 +9,15 @@ import NotFound from './components/NotFound'
 import Edit from './components/Edit';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import ForgotPassword from './components/ForgotPassword';
 import PrivateRoute from './components/PrivateRoute';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
+import Modal from "../src/components/Modal";
 
 
 function App() {
+  const [modalShow, setModalShow] = useState("none");
+  const [modalContent,setModalContent] = useState("");
   const tokenLife = 86.4 * (10**6);    // 1 day in millis
   const delay = 3.6 * (10**6);        // 1 hour in millis
 
@@ -28,8 +32,8 @@ function App() {
           // localStorage.removeItem('access');
           // localStorage.removeItem('loginTime');
           localStorage.clear()
-
-          alert("Session expired, please Log in again");
+          setModalContent("Session expired, please Log in again");
+          setModalShow("block");
           window.location.href = '/login';
         }
         console.log(timeNow - loginTime)
@@ -47,6 +51,7 @@ function App() {
 
   return (
       <Router>
+        <Modal modalContent={modalContent} modalShow={modalShow} setModalShow={setModalShow}/>
 
         <div className="App">
           <div className="content">
@@ -57,7 +62,9 @@ function App() {
                 <Route exact path= "/signup">
                     <Signup/>
                 </Route>
-                
+                <Route exact path= "/forgot_password">
+                    <ForgotPassword/>
+                </Route>
                 <PrivateRoute exact path = "/">
                    <Navbar/>
                     <Home/>
@@ -70,11 +77,11 @@ function App() {
                     <Navbar/>
                     <Search />
                 </PrivateRoute>
-                <PrivateRoute exact path="/blogs/:id">
+                <PrivateRoute exact path="/my_blogs/:id">
                     <Navbar/>
                     <BlogDetails />
                 </PrivateRoute>
-                <PrivateRoute exact path="/blogs/edit/:id">
+                <PrivateRoute exact path="/my_blogs/edit/:id">
                     <Navbar/>
                     <Edit />
                 </PrivateRoute>

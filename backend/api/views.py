@@ -41,6 +41,14 @@ class BlogViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(blogs, many=True)
         return  Response(serializer.data)
     
+    @action(detail=False, methods=['GET'], url_path='other_blogs')
+    def other_blogs(self,request):
+        user = request.user
+        blogs = Blog.objects.exclude(author=user)
+        blogs = blogs.order_by('-created_at')
+        serializer = self.get_serializer(blogs, many=True)
+        return  Response(serializer.data)
+    
     def get_queryset(self):
         blogs = Blog.objects.all()
         blogs = blogs.order_by('-created_at')
@@ -83,6 +91,21 @@ def login (request):
         'refresh':str(refresh),
         'access': str(refresh.access_token),
     })
+
+
+@api_view(['POST'])
+def check_email(request):
+    user = get_object_or_404(User,email=request.data['email'])
+    
+    refresh = RefreshToken.for_user(user)
+
+    return Response({
+        # 'refresh':str(refresh),
+        'userId': str(refresh.access_token),
+    })
+
+def forgot_password(request):
+    pass
 
 
 

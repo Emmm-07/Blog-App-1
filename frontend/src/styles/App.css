@@ -4,10 +4,15 @@
   --secondary-color: #90f135;
   --tertiary-color: #4a7766;
 }
+
+/* .App{
+  border: red 2px solid;
+} */
 .content{
   max-width: 600px;
   margin: 20px auto;
   padding: 20px;
+  /* overflow: hidden; */
 }
 
 .blog-preview{
@@ -87,14 +92,13 @@
 }
 
 
-.login, .signup{
+.login, .signup, .forgot_password{
   /* border: 2px solid red; */
-  height: 80vh;
+  height: 70vh;
   align-items: center;
   align-content: center;
-  
 }
-.login form, .signup form{
+.login form, .signup form, .forgot_password form{
   /* border: 2px solid red; */
   display: grid;
   grid-template-columns: 1;
@@ -102,12 +106,12 @@
   text-align: center;
   margin: auto;
   gap: 1rem;
-  width: 20rem;
+  width: 20rem; 
 }
 .signup form{
   width: 40rem;
 }
-.login form label{
+.login form label,.forgot_password form label{
   text-align: left;
 }
 .signup form label{
@@ -119,10 +123,10 @@
   overflow:visible;
   
 }
-.login p, .signup p{
+.login p, .signup p, .forgot_password p{
   font-size: 0.8rem;
 }
-.login form input, .signup form input{
+.login form input, .signup form input, .forgot_password form input{
   height: 2.5rem;
   width: 15rem;
   font-size: 1rem;
@@ -134,14 +138,14 @@
   justify-self: center;
 }
 
-.login button, .signup button{
+.login button, .signup button,.forgot_password button{
   justify-self: center;
   height: 2.5rem;
   width: 10rem;
   background-color: white;
   cursor: pointer;
 }
-.login form a, .signup form a{
+.login form a, .signup form a, .forgot_password form a{
   text-decoration: none;
   color: var(--secondary-color);
 }
@@ -162,3 +166,20 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+
+
+/* LOADING / SPINNER 
+  from: https://css-loaders.com/spinner/
+*/
+
+/* HTML: <div class="loader"></div> */  
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid;
+  border-color: #000 #0000;
+  animation: l1 1s infinite;
+}
+@keyframes l1 {to{transform: rotate(.5turn)}}

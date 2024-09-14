@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import show from '../images/show.png';
 import hide from '../images/hide.png';
+import Modal from "./Modal";
+import { hostUrl } from "../config";
 const Signup = () => {
     const [username,setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -13,11 +15,16 @@ const Signup = () => {
     const history = useHistory();
     const [showPass,setShowPass] = useState(true);
     const [passwordStrength,setPasswordStrength] = useState('Weak');
+    const [passStrengtColor,setPassStrengtColor]   = useState('red');
+    const [isPending, setIsPending] = useState(false);
+    const [modalShow, setModalShow] = useState("none");
+    const [modalContent,setModalContent] = useState("");
 
     const handleSignup = (e) => {
         e.preventDefault();
+        setIsPending(true);
 
-        axios.post('http://127.0.0.1:8000/signup',{
+        axios.post(hostUrl + 'signup',{
             first_name: firstname,
             last_name: lastname,
             username: username,
@@ -28,37 +35,53 @@ const Signup = () => {
                 'Content-Type': 'application/json'
             }
         }).then(response=>{
+            setIsPending(false);
             if(response.data.access){
                 console.log('access:  '+response.data.access);
                 localStorage.setItem('access',response.data.access);
                 // localStorage.setItem('refresh',response.data.refresh);
                 history.push('/login');
             }else {
-                alert('Signup failed');
+                setModalContent("Signup Failed");
+                setModalShow("block")
               }
         }).catch(error=>{
-            alert(error.response.data.detail.username);
+            setIsPending(false);
+            setModalContent(error.response.data.detail.username);
+            setModalShow("block")
         })
     }
 
     const handlePassword = (e) =>{
        
         setPassword(e.target.value);
-        // const regexWeak = /[a-z]/; // Lowercase
-        // const regexMedium = /\d|[!@#$%^&*(),.?":{}|<>]/; // Numbers or special characters
-        // const regexStrong = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/; // Uppercase, lowercase, numbers, special characters
+        const regexWeak = /[a-z]/; // Lowercase
+        const regexMedium = /(?=.*[a-z])(?=.*\d|[!@#$%^&*(),.?":{}|<>])/; //  contains a lowercase and (Numbers or special characters)
+        const regexStrong = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])/; // contains Uppercase, lowercase, numbers, and special characters
+        // const A = /[a-z]/
+        // const B = /\d/
+        // const C = /[A-Z]/
+        // const D = /[!@#$%^&*(),.?":{}|<>]/
 
-        
-        // if (password.length < 8) {
-        //     setPasswordStrength('Weak');
-        // } else if (password.length >= 8 && regexMedium.test(password)) {
-        //     setPasswordStrength('Medium');
-        // } else if (password.length >= 10 && regexStrong.test(password)) {
-        //     setPasswordStrength('Strong');
-        // } else {
-        //     setPasswordStrength('Weak');
+        // if(regexStrong.test(password)){
+        //     setPasswordStrength('YES');
+        // }else{
+        //     setPasswordStrength('NO');
         // }
-        // e.preventDefault();
+        if (password.length < 6) {
+            setPasswordStrength('Weak');    
+            setPassStrengtColor('red');
+        } else if (regexStrong.test(e.target.value)) {                      // Tests/checks the password
+            setPasswordStrength('Strong');
+            setPassStrengtColor('green');
+        } else if (regexMedium.test(e.target.value)) {
+            setPassStrengtColor('yellow');
+            setPasswordStrength('Medium');
+        } else {
+            setPasswordStrength('Weak');
+            setPassStrengtColor('red');
+        }
+
     }
 
     return (  
@@ -101,10 +124,11 @@ const Signup = () => {
                     value={password}
                     onChange={(e)=>handlePassword(e)}
                 />
-                <p>Password strength: {passwordStrength}</p>
+                <p style={{opacity:(password==='')?0:1}}>Password strength: <span style={{color:passStrengtColor,fontWeight:"bold"}}>{passwordStrength}</span></p>
                 
-                <br />
-                <button>Signup</button>
+           
+                {!isPending && <button>Sign up</button>}
+                {isPending && <button disabled>Signing up...</button>}
             </form>
             {/* Hide n' show Password */}
             <img className='passwordIcon' 
@@ -112,6 +136,8 @@ const Signup = () => {
                 onClick={()=>setShowPass(showPass?false:true)}
                 style={{opacity:(password==='')?0:1}}
             />
+
+            <Modal modalContent={modalContent} modalShow={modalShow} setModalShow={setModalShow}/>
 
         </div>
     );

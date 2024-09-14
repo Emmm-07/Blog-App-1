@@ -17,10 +17,10 @@ const useFetch = (url) => {
             https://www.youtube.com/watch?v=eao7ABGFUXs&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d&index=16
         */
 
-        setTimeout(()=>{
+        // setTimeout(()=>{
 
         axios.get(url,{ 
-            signal: abortCont.signal,
+            // signal: abortCont.signal,
             headers:{
                 'Content-Type':"application/json" ,
                 'Authorization': `Bearer ${token}`
@@ -44,7 +44,7 @@ const useFetch = (url) => {
             }
         });
         
-        },1000); // in here, setTimeOut is only used for simulation of the Loading...., Do not do this in production
+        // },1000); // in here, setTimeOut is only used for simulation of the Loading...., Do not do this in production
 
 
         return () => abortCont.abort(); // To stop fetching data if changes Tab quickly

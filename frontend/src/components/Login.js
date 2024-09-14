@@ -3,6 +3,8 @@ import { useState,useEffect } from 'react';
 import { useHistory,Link } from 'react-router-dom';
 import show from '../images/show.png';
 import hide from '../images/hide.png';
+import Modal from "./Modal";
+import { hostUrl } from "../config";
 
 const Login = () => {
     
@@ -11,13 +13,15 @@ const Login = () => {
     const [password, setPassword] = useState(''); 
     const history = useHistory();
     const dateNow = new Date();      
-    const [showPass,setShowPass] = useState(true);
-
+    const [showPass,setShowPass] = useState(false);
+    const [isPending, setIsPending] = useState(false);
+    const [modalShow, setModalShow] = useState("none");
+    const [modalContent,setModalContent] = useState("");
 
     const handleLogin = (e) => {
         e.preventDefault();
-
-        axios.post('http://127.0.0.1:8000/login',{
+        setIsPending(true); 
+        axios.post(hostUrl + 'login',{
              username: username,
              password: password 
         },{
@@ -25,6 +29,7 @@ const Login = () => {
                 "Content-Type":'application/json'
             }
         }).then(response=>{
+            setIsPending(false);
             if(response.data.access){
                 console.log('access:  '+response.data.access);
                 localStorage.setItem('access',response.data.access);
@@ -33,16 +38,18 @@ const Login = () => {
                 
                 history.push('/')
             }else{
-                alert("login failed");
+                setModalContent("login failed");
             }
+            setModalShow("block");
         }).catch(error=>{
-
+            setIsPending(false);
             try{
-                alert(error.response.status===404 && "Invalid credentials");
+                
+                setModalContent(error.response.status===404 && "Invalid username or password");
             }catch(err){
-                alert("Network Error, server is offline");
+                setModalContent("Network Error, server is offline");
             }
-
+            setModalShow("block");
         });
 
     }
@@ -65,8 +72,9 @@ const Login = () => {
               value={password}
               onChange={(e)=>setPassword(e.target.value)}
             />
-            <p><Link>Forgot password?</Link></p>
-            <button>Login</button>
+            <p><Link to='/forgot_password'>Forgot password?</Link></p>
+            {!isPending && <button>Login</button>}
+            {isPending && <button disabled>Logging in...</button>}
             <br />
             <p>Don't have an account yet?<Link to='/signup'> Sign up</Link></p>
         </form>
@@ -75,6 +83,10 @@ const Login = () => {
                 onClick={()=>setShowPass(showPass?false:true)}
                 style={{opacity:(password==='')?0:1}}
             />
+            
+          
+     <Modal modalContent={modalContent} modalShow={modalShow} setModalShow={setModalShow}/>
+
       </div>
     );
 }
