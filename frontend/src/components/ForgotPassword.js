@@ -10,6 +10,7 @@ const ForgotPassword = () => {
     const [isPending, setIsPending] = useState(false);
     const [error,setError] = useState(null);
 
+
     const checkEmail = (e) =>{
         e.preventDefault();
         setIsPending(true); 
@@ -21,6 +22,7 @@ const ForgotPassword = () => {
                "Content-Type":'application/json'
            }
        }).then(response=>{
+           localStorage.setItem("account",response.data.account);
            setIsPending(false);
            setError(null);
            sendEmail();
@@ -38,20 +40,20 @@ const ForgotPassword = () => {
 
        });
     }
+
     const sendEmail = (e) => {
         // e.preventDefault();
         
         const YOUR_SERVICE_ID = 'service_54raegp';
         const YOUR_TEMPLATE_ID = 'template_bz8l1uk';
         const YOUR_PUBLIC_KEY = 'WS7GaA2MhJS9Z7p1h';
-        const templateParams = {
-                    link: 'google.com',  // Send the dynamic link
-          };
+        const currentForm = form.current;
+        currentForm.link.value  = hostUrl + 'change_password';
+
         console.log(form.current)
-        emailjs.sendForm(YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, form.current, {
+        emailjs.sendForm(YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, currentForm, {
             publicKey: YOUR_PUBLIC_KEY,
-          })
-          .then(
+          }).then(
             () => {
               form.current.reset();
               alert("email sent");
@@ -81,12 +83,12 @@ const ForgotPassword = () => {
                 required
             />  
             
-            <p hidden value='google.com' name='link'></p>
+            <input type="hidden" name="link" value=""></input>
 
             <button>Send</button>
             <br />
             <p>Create new account instead?<Link to='/signup'>Signup</Link> </p>
-
+        
         </form>
        
         </div>

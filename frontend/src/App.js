@@ -13,6 +13,7 @@ import ForgotPassword from './components/ForgotPassword';
 import PrivateRoute from './components/PrivateRoute';
 import { useEffect,useState } from 'react';
 import Modal from "../src/components/Modal";
+import ChangePassword from './components/ChangePassword';
 
 
 function App() {
@@ -64,6 +65,9 @@ function App() {
                 </Route>
                 <Route exact path= "/forgot_password">
                     <ForgotPassword/>
+                </Route>
+                <Route exact path= "/change_password">
+                    <ChangePassword/>
                 </Route>
                 <PrivateRoute exact path = "/">
                    <Navbar/>

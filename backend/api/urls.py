@@ -17,6 +17,7 @@ urlpatterns = [
     re_path('login',views.login),
     re_path('signup',views.signup),
     re_path('check_email',views.check_email),
+    re_path('change_password',views.change_password),
     # re_path('test_token',views.test_token),
 
     path('api/token', TokenObtainPairView.as_view(),name='token_obtain_pair'),

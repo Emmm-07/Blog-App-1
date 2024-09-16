@@ -101,10 +101,10 @@ def check_email(request):
 
     return Response({
         # 'refresh':str(refresh),
-        'userId': str(refresh.access_token),
+        'account': str(refresh.access_token),
     })
 
-def forgot_password(request):
+def change_password(request):
     pass
 
 

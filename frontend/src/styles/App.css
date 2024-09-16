@@ -92,13 +92,13 @@
 }
 
 
-.login, .signup, .forgot_password{
+.login, .signup, .forgot_password, .change_password{
   /* border: 2px solid red; */
   height: 70vh;
   align-items: center;
   align-content: center;
 }
-.login form, .signup form, .forgot_password form{
+.login form, .signup form, .forgot_password form, .change_password form{
   /* border: 2px solid red; */
   display: grid;
   grid-template-columns: 1;
@@ -111,7 +111,7 @@
 .signup form{
   width: 40rem;
 }
-.login form label,.forgot_password form label{
+.login form label,.forgot_password form label, .change_password form label{
   text-align: left;
 }
 .signup form label{
@@ -123,10 +123,10 @@
   overflow:visible;
   
 }
-.login p, .signup p, .forgot_password p{
+.login p, .signup p, .forgot_password p,.change_password p{
   font-size: 0.8rem;
 }
-.login form input, .signup form input, .forgot_password form input{
+.login form input, .signup form input, .forgot_password form input, .change_password input{
   height: 2.5rem;
   width: 15rem;
   font-size: 1rem;
@@ -138,7 +138,7 @@
   justify-self: center;
 }
 
-.login button, .signup button,.forgot_password button{
+.login button, .signup button,.forgot_password button, .change_password button{
   justify-self: center;
   height: 2.5rem;
   width: 10rem;
