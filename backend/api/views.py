@@ -104,8 +104,14 @@ def check_email(request):
         'account': str(refresh.access_token),
     })
 
+@api_view(['POST'])
+# @authentication_classes([SessionAuthentication,TokenAuthentication])
+@permission_classes([IsAuthenticated])
 def change_password(request):
-    pass
+    user = request.user
+    user.set_password(request.data['newPassword'])    
+    user.save()  
+    return Response(f"Successfully Changed password")
 
 
 

@@ -71,8 +71,12 @@ Content-Type: application/json
 
 { "email":"jcg@gmail.com"}
 
+###
+POST http://127.0.0.1:8000/change_password
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI2ODQzOTc3LCJpYXQiOjE3MjY2NzExNzcsImp0aSI6IjExYzRiNDY4ZGQ4MTRiYzlhMDYxNTM3NTM2NDA1MjRlIiwidXNlcl9pZCI6M30.ZrDjufv_k_io__kdHnuwV9s5TVRGYxoS0nTg_mdtty4
 
-
+{ "newPassword":"newpass123"}
 
 
 

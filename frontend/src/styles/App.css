@@ -167,8 +167,22 @@
   cursor: pointer;
 }
 
-
-
+.change_password .passwordIcon:first-of-type{
+  position: relative;
+  height: 2rem;
+  top: -14rem;
+  left: 25rem;
+  background-color: transparent;
+  cursor: pointer;
+}
+.change_password .passwordIcon + .passwordIcon {
+  position: relative;
+  height: 2rem;
+  top: -8rem;
+  left: 23rem;
+  background-color: transparent;
+  cursor: pointer;
+}
 /* LOADING / SPINNER 
   from: https://css-loaders.com/spinner/
 */

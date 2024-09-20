@@ -5,17 +5,23 @@ import show1 from '../images/show.png';
 import hide1 from '../images/hide.png';
 import show2 from '../images/show.png';
 import hide2 from '../images/hide.png';
+import Modal from "./Modal";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const ChangePassword = () => {
     const [isPending, setIsPending] = useState(false);
+    const [modalShow, setModalShow] = useState("none");
+    const [modalContent,setModalContent] = useState("");
     const [error,setError] = useState(null);
     const [newPass1,setNewPass1] = useState("");
     const [newPass2,setNewPass2] = useState("");
-    const [showPass1,setShowPass1] = useState(true);
-    const [showPass2,setShowPass2] = useState(true);
+    const [showPass1,setShowPass1] = useState(false);
+    const [showPass2,setShowPass2] = useState(false);
     const [passwordStrength,setPasswordStrength] = useState('Weak');
     const [passStrengtColor,setPassStrengtColor]   = useState('red');
+    const [isPasswordMatch,setIsPasswordMatch]  = useState(null);
     const form = useRef();
+    const history = useHistory();
 
     const handlePassword = (e) =>{
        
@@ -40,9 +46,41 @@ const ChangePassword = () => {
         }
 
     }
-
+    ///EDIT here
     const handleChangePass = (e) => {
         e.preventDefault();
+        if(newPass1!=newPass2){
+            setIsPasswordMatch(false);
+        }else{
+            setIsPasswordMatch(true);
+
+
+            axios.post(hostUrl + 'change_password',{
+                newPassword: newPass1,
+           },{
+               headers:{
+                   "Content-Type":'application/json',
+                   'Authorization': `Bearer ${localStorage.getItem('account')}`
+               }
+           }).then(response=>{
+               setIsPending(false);
+               setError(null);
+               console.log("Password changed");
+               history.push('/login');
+           }).catch(error=>{
+               setIsPending(false);
+               try{
+                   if(error.response.status===404){
+                    setError("The email provided does not match any account")
+                   }
+               }catch(err){
+                    setError(error);
+               }
+    
+           });
+        }
+
+
     }; 
 
     return (  
@@ -62,6 +100,7 @@ const ChangePassword = () => {
                 required
             />  
             <label>Confirm Password</label>
+           
             <input type={showPass2?"text":"password"}  
                 name="newPass2"
                 value={newPass2}
@@ -70,8 +109,8 @@ const ChangePassword = () => {
             />  
 
             <p style={{opacity:(newPass1==='')?0:1}}>Password strength: <span style={{color:passStrengtColor,fontWeight:"bold"}}>{passwordStrength}</span></p>
-
-            <br />
+       
+          
             <button>Save</button>
          
  
@@ -87,6 +126,8 @@ const ChangePassword = () => {
                 onClick={()=>setShowPass2(showPass2?false:true)}
                 style={{opacity:(newPass2==='')?0:1}}
             />  
+                      
+        <Modal modalContent={modalContent} modalShow={modalShow} setModalShow={setModalShow}/>
         </div>
     );
 }

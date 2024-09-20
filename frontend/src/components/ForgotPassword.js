@@ -9,7 +9,7 @@ const ForgotPassword = () => {
     const [email,setEmail] = useState('');
     const [isPending, setIsPending] = useState(false);
     const [error,setError] = useState(null);
-
+    const clientUrl = "http://localhost:3000/";        ///Change this to the deployed url
 
     const checkEmail = (e) =>{
         e.preventDefault();
@@ -48,7 +48,7 @@ const ForgotPassword = () => {
         const YOUR_TEMPLATE_ID = 'template_bz8l1uk';
         const YOUR_PUBLIC_KEY = 'WS7GaA2MhJS9Z7p1h';
         const currentForm = form.current;
-        currentForm.link.value  = hostUrl + 'change_password';
+        currentForm.link.value  = clientUrl + 'change_password';
 
         console.log(form.current)
         emailjs.sendForm(YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, currentForm, {
