@@ -176,3 +176,15 @@ code {
     bottom:0;
   }
 }
+
+
+
+.posts .heartIcon{
+  width: 2rem;  
+  margin-right: 1rem;
+  cursor: pointer;
+}
+.posts .commentsIcon{
+  width: 2rem;
+  cursor: pointer;
+}

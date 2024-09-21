@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Create from './components/Create';
-import Search from './components/Search';
+import Posts from './components/Posts';
 import BlogDetails from './components/BlogDetails';
 import NotFound from './components/NotFound'
 import Edit from './components/Edit';
@@ -77,9 +77,9 @@ function App() {
                     <Navbar/>
                     <Create />
                 </PrivateRoute>
-                <PrivateRoute exact path="/search">
+                <PrivateRoute exact path="/posts">
                     <Navbar/>
-                    <Search />
+                    <Posts />
                 </PrivateRoute>
                 <PrivateRoute exact path="/my_blogs/:id">
                     <Navbar/>

@@ -134,10 +134,18 @@ def toggle_heart(request):
         # Otherwise, create a new heart reaction
         Heart.objects.create(user=user, blog=blog)
         hearted = True
-
+    print(user.hearts.all())
     return Response({'total_hearts':blog.total_hearts(), 'hearted':hearted})
 
-
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def hearted_blogs(request):
+     user = request.user
+    #  blog = get_object_or_404(Blog,id = request.data['blogId'])
+     hearted_blog_ids = user.hearts.values_list('blog__id',flat=True) 
+     hearted_blog_ids = list(hearted_blog_ids)
+     print(hearted_blog_ids)
+     return Response({"heartedBlogs":hearted_blog_ids})
 
 # @api_view(['GET'])
 # @authentication_classes([SessionAuthentication,TokenAuthentication])

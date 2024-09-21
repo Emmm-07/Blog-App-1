@@ -84,8 +84,15 @@ POST http://127.0.0.1:8000/toggle_heart/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3MDkxODIxLCJpYXQiOjE3MjY5MTkwMjEsImp0aSI6ImE0YTMzYTQ1ZDU3NDQ1ZGZiMjFjMzNmNDg2MmY2NTA0IiwidXNlcl9pZCI6M30.sBhL1_iD4TFFrjl4mIxrOW__2MDjmwJ53feIdfqdW6w
 
-{"blogId":9}
+{"blogId":3}
 
+
+###
+GET http://127.0.0.1:8000/hearted_blogs/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzI3MDkxODIxLCJpYXQiOjE3MjY5MTkwMjEsImp0aSI6ImE0YTMzYTQ1ZDU3NDQ1ZGZiMjFjMzNmNDg2MmY2NTA0IiwidXNlcl9pZCI6M30.sBhL1_iD4TFFrjl4mIxrOW__2MDjmwJ53feIdfqdW6w
+
+{}
 
 # ###
 # GET http://127.0.0.1:8000/test_token

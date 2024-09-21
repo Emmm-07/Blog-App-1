@@ -1,10 +1,24 @@
 import useFetch from "./useFetch";
 import BlogList from "./BlogList";
 import { hostUrl } from "../config";
-const Search = () => {
+import unheartedIcon from "../images/unheart.png" 
+import heartedIcon from "../images/heart.png"
+import commentsIcon from "../images/comments.png"
+import { useState } from "react";
+const Posts = () => {
     const { data: blogs, isPending, error } = useFetch(hostUrl + 'api/blogs/other_blogs');
+    const [heartedBlogs,setHeartedBlogs] = useState({});
+
+    const toggleHeart = (blogId) => {
+        setHeartedBlogs((prevState)=>({
+            ...prevState,
+            [blogId] : !prevState[blogId],     // Toggle hearted state for the specific blog
+
+        }))
+    }
+    
     return (  
-        <div className="search">
+        <div className="posts">
             <h2>Latest Posts</h2>
             <br />
             {error && <div style={{ color:'red',fontSize:'50px' }}>{ error }</div>}
@@ -13,7 +27,7 @@ const Search = () => {
             {blogs && 
 
                 blogs.map((blog)=>(                               // Slice to get only the first 3 blogs
-                    <article className="blog-preview">
+                    <article className="blog-preview" key={blog.id}>
                     <h2 style={{ color: '#f1356d'}}>{ blog.title }</h2>
                     <i>by { blog.author_first_name } { blog.author_last_name }</i>
                     <br/>
@@ -21,6 +35,12 @@ const Search = () => {
                     <p>{ blog.body }</p>
                     <br />
                     <p>Date posted: {blog.created_at}</p>
+                    <img src={heartedBlogs[blog.id]?heartedIcon:unheartedIcon} 
+                        alt="heart.png" 
+                        className="heartIcon" 
+                        onClick={()=>toggleHeart(blog.id)}/>
+
+                    <img src={commentsIcon} alt="comments.png" className="commentsIcon"/>
                     </article>
                 ))
                 
@@ -29,4 +49,4 @@ const Search = () => {
     );
 }
  
-export default Search;
+export default Posts;
