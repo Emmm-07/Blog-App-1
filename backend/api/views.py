@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .models import Blog
+from .models import Heart
+from .models import Comment
 from .serializers import BlogSerializer, UserSerializer
 
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -112,6 +114,28 @@ def change_password(request):
     user.set_password(request.data['newPassword'])    
     user.save()  
     return Response(f"Successfully Changed password")
+
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def toggle_heart(request):
+    user = request.user
+    blog = get_object_or_404(Blog,id = request.data['blogId'])
+
+    # Check if the user already hearted this blog
+    heart = Heart.objects.filter(user=user, blog=blog).first()
+
+    if heart:
+         # If the heart exists, remove it (unheart)
+        heart.delete()
+        hearted = False
+    else:
+        # Otherwise, create a new heart reaction
+        Heart.objects.create(user=user, blog=blog)
+        hearted = True
+
+    return Response({'total_hearts':blog.total_hearts(), 'hearted':hearted})
 
 
 

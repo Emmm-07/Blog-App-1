@@ -10,11 +10,12 @@ const ForgotPassword = () => {
     const [isPending, setIsPending] = useState(false);
     const [error,setError] = useState(null);
     const clientUrl = "http://localhost:3000/";        ///Change this to the deployed url
+    const [isEmailSent, setIsEmailSent] = useState(false);
 
     const checkEmail = (e) =>{
         e.preventDefault();
         setIsPending(true); 
-
+        console.log("here check email");
         axios.post(hostUrl + 'check_email',{
             email: email,
        },{
@@ -26,16 +27,20 @@ const ForgotPassword = () => {
            setIsPending(false);
            setError(null);
            sendEmail();
+           setEmail('');
            console.log("Email Verified");
+           
 
        }).catch(error=>{
            setIsPending(false);
+            console.log("here in catch error")
+           setEmail('');
            try{
                if(error.response.status===404){
                 setError("The email provided does not match any account")
                }
            }catch(err){
-                setError(error);
+                setError("Network Error");
            }
 
        });
@@ -43,7 +48,7 @@ const ForgotPassword = () => {
 
     const sendEmail = (e) => {
         // e.preventDefault();
-        
+        setIsPending(true);
         const YOUR_SERVICE_ID = 'service_54raegp';
         const YOUR_TEMPLATE_ID = 'template_bz8l1uk';
         const YOUR_PUBLIC_KEY = 'WS7GaA2MhJS9Z7p1h';
@@ -56,7 +61,8 @@ const ForgotPassword = () => {
           }).then(
             () => {
               form.current.reset();
-              alert("email sent");
+              setIsEmailSent(true);
+              setIsPending(false);
             },
             (error) => {
               console.log('FAILED...', error.text);
@@ -68,14 +74,19 @@ const ForgotPassword = () => {
 
     return (  
         <div className="forgot_password">
-            {isPending && <div><div class="loader"></div><h2>Verifying email</h2></div>}
-            { error && <div>{ error }</div>}
-  
+            {isPending && <div><div class="loader"></div><h2></h2></div>}
+
+            {isEmailSent && <div style={{alignItems:'center',textAlign:'center'}}>Confirmation link already sent. Please Check your email.</div>}
+            {!isEmailSent && 
+            <>
             <form ref={form} onSubmit={checkEmail}>
             <h1>Forgot Password</h1>
             <p>Enter your email to reset password</p>
             <br />
+            
             <label>Email</label>
+            { error && <p style={{color:'red',textAlign:'left'}}>{ error }</p>}
+
             <input type="email"  
                 name="email"
                 value={email}
@@ -90,7 +101,8 @@ const ForgotPassword = () => {
             <p>Create new account instead?<Link to='/signup'>Signup</Link> </p>
         
         </form>
-       
+        </>
+        }
         </div>
     );
 }

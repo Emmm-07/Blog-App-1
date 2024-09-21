@@ -11,7 +11,7 @@ const Navbar = () => {
     }
     return ( 
         <nav className="navbar">
-            <h1>Jm's Blogs</h1>
+            <h1>Blogga Hub</h1>
             <div className="links">
                 <ul>
                     <li><Link to="/">Home</Link></li>

@@ -18,9 +18,10 @@ urlpatterns = [
     re_path('signup',views.signup),
     re_path('check_email',views.check_email),
     re_path('change_password',views.change_password),
+    re_path('toggle_heart',views.toggle_heart),
     # re_path('test_token',views.test_token),
 
-    path('api/token', TokenObtainPairView.as_view(),name='token_obtain_pair'),
-    path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh')
+    # path('api/token', TokenObtainPairView.as_view(),name='token_obtain_pair'),
+    # path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh')
     
 ]
