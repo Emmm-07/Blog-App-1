@@ -145,7 +145,7 @@ def hearted_blogs(request):
      hearted_blog_ids = user.hearts.values_list('blog__id',flat=True) 
      hearted_blog_ids = list(hearted_blog_ids)
      print(hearted_blog_ids)
-     return Response({"heartedBlogs":hearted_blog_ids})
+     return Response({"heartedBlogId":hearted_blog_ids})
 
 # @api_view(['GET'])
 # @authentication_classes([SessionAuthentication,TokenAuthentication])

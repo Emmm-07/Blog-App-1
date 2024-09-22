@@ -32,7 +32,8 @@ const Signup = () => {
             password: password,
         },{
             headers:{
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${token}`
             }
         }).then(response=>{
             setIsPending(false);
