@@ -45,7 +45,8 @@ const Create = () => {
             <br />
             <form onSubmit={handleSubmit}>
                 <label>Blog Title:</label>
-                <input type="text" 
+                <input type="text"
+                autoFocus 
                 required
                 value={title}
                 onChange={(e)=> setTitle(e.target.value)}

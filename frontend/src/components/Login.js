@@ -61,6 +61,7 @@ const Login = () => {
             <p>Sign in to continue</p>
             <label>Username</label>
             <input type="text" 
+                autoFocus
                 required
                 value={username}
                 onChange={(e)=>setUsername(e.target.value)}

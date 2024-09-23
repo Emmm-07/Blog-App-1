@@ -12,7 +12,7 @@ const Posts = () => {
     const { data:hearted_blogs , isPending: isPending2, error:error2} = useFetch(hostUrl + 'hearted_blogs');
     const [heartedBlogs,setHeartedBlogs] = useState({});
     const token = localStorage.getItem('access');
-    
+    const [heartCounts,setHeartCounts] = useState({});
 
       // Effect to set hearted blogs based on fetched data
       useEffect(() => {
@@ -27,7 +27,17 @@ const Posts = () => {
         }
     }, [hearted_blogs]); // Only run when hearte
 
-    const postHeart = (blogId) =>{
+    useEffect(()=>{
+        if(blogs){
+            const inittialHeartCounts = {}
+            blogs.forEach(blog=>{
+                inittialHeartCounts[blog.id] = blog.total_hearts;
+            })
+            setHeartCounts(inittialHeartCounts);
+        }
+    },[blogs])
+
+    const postHeart = (blogId) =>{                          // Retrieve blog IDs that you have hearted
         axios.post(hostUrl + 'toggle_heart',{
             blogId:blogId,
         },{
@@ -47,6 +57,11 @@ const Posts = () => {
             ...prevState,
             [blogId] : !prevState[blogId],     // Toggle hearted state for the specific blog
 
+        }))
+
+        setHeartCounts((prevState)=>({
+            ...prevState,
+            [blogId] : prevState[blogId] + (heartedBlogs[blogId] ? -1 : 1)
         }))
         postHeart(blogId);
     }
@@ -77,11 +92,14 @@ const Posts = () => {
                     <br />
                     <p>Date posted: {blog.created_at}</p>
                     {/* {hearted_blogs.heartedBlogId.includes(blog.id) && (() => toggleHeart(blog.id))} */}
+                    {heartCounts[blog.id]!=0 && heartCounts[blog.id]}
                     <img src={heartedBlogs[blog.id]?heartedIcon:unheartedIcon} 
                         alt="heart.png" 
                         className="heartIcon" 
                         onClick={()=>toggleHeart(blog.id)}/>
+                        
                     <img src={commentsIcon} alt="comments.png" className="commentsIcon"/>
+    
                     </article>
                 ))
                 
