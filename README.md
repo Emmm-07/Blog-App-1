@@ -3,6 +3,7 @@ A simple web blogging app where you can post blogs, edit/delete your blogs, see 
 
 ## Link
 [https://my-blog-app-bay.vercel.app/](https://my-blog-app-bay.vercel.app/)
+
 Note: On first boot up, you might sometimes experience a slow server response when logging in, it is because the server is deployed on free tier only of render.com.
 In general the servers on free tier plans go to sleep after 30 minutes of inactivity. And to “wake” them up again it takes about 1 minute.
 
