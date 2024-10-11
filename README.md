@@ -3,6 +3,11 @@ A simple web blogging app where you can post blogs, edit/delete your blogs, see 
 ## Link
 [https://my-blog-app-bay.vercel.app/](https://my-blog-app-bay.vercel.app/)
 
+## Demo accounts
+- Username: jc Password: jc123
+- Username: marc Password: marc123
+- Username: melv Password: melv123
+  
 ## To run the Frontend in localhost
 ../frontend > npm start
 
